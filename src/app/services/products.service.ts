@@ -19,6 +19,7 @@ export class ProductService {
             map((products: Product[]) => {
                 products.forEach((product: Product) => {
                     product.showBackground = false;
+                    product.stock = Math.floor(Math.random() * 101);
                 })
                 return products
             }),
@@ -31,6 +32,7 @@ export class ProductService {
             map((products: Product[]) => {
                 products.forEach((product: Product) => {
                     product.showBackground = false;
+                    product.stock = Math.floor(Math.random() * 101);
                 })
                 return products
             }),
