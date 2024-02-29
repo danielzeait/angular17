@@ -1,0 +1,62 @@
+
+<app-title title="Product list" withShadow/>
+
+@if (categoryView) {
+    <div class="pb-5 w-full">
+        <nav aria-label="Breadcrumb">
+            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 breadcrumb-tabs">
+              <li (click)="removeQueryParams()">
+                <div class="flex items-center">
+                  <a class="mr-2 text-sm font-medium text-gray-900">All Products</a>
+                  <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                  </svg>
+                </div>
+              </li>
+      
+              <li class="text-sm">
+                <a aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">{{ categoryName }}</a>
+              </li>
+            </ol>
+        </nav>
+    </div>
+}
+
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div class="mt-6 grid grid-cols-1 gap-x-15 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-10 lg:gap-x-12 xl:gap-x-12 xl:grid-cols-4">
+        @for (product of productList; track $index) {
+            <div class="group relative" (mouseenter)="product.showBackground = true" (mouseleave)="product.showBackground = false" (click)="viewProductDetails(product)">
+                <div 
+                [style.background-image]="'url(' +  product.image + ')'"
+                class="image-product-container overflow-hidden rounded-md group-hover:opacity-50 lg:h-80 h-60">
+                </div>
+                @if (product.showBackground) {
+                    <div class="quickview">
+                        <div class="grid gap-y-4">
+                            <button class="p-2 rounded text-black-800 transition ease-linear duration-150" (click)="quickProductView(product); $event.stopPropagation()">
+                                Quick view 
+                            </button> 
+                            <button class="p-2 button-dark rounded text-white-800 transition ease-linear duration-150" (click)="$event.stopPropagation()">
+                                Add to cart
+                            </button>            
+                        </div>
+                    </div>
+                }
+                <div class="mt-4 flex justify-between description-price">
+                    <h3 class="text-sm text-gray-700">
+                        {{ product.title }}
+                    </h3>
+                    <p class="text-xl font-bold text-purple-900">$ {{ product.price }}</p>
+                </div>
+            </div>
+        }@empty {
+            <h2>There is no items here</h2>
+        }
+      </div>
+    </div>
+</div>
+
+@if (showModal) {
+    <app-modal-dialog [productDetails]="productQuickDeatilsData" (modalDissmiss)="showModal = false"/>
+}

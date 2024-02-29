@@ -4,6 +4,7 @@
 
 export const environment = {
   api_url:'https://api.github.com',
+  storeApiUrl:'https://fakestoreapi.com',
   production: false
 };
 

@@ -47,6 +47,16 @@ export const routes: Routes = [
                 loadComponent: () => import('./dashboard/pages/view-transition/view-transition2.component'),
             },
             {
+                path:'products',
+                title:'Products',
+                loadComponent: () => import('./products/product-list/product-list.component'),
+            },
+            {
+                path:'products/:id',
+                title:'Product Details',
+                loadComponent: () => import('./products/product-details/product-details.component'),
+            },
+            {
                 path:'',
                 redirectTo:'home',
                 pathMatch:'full',
