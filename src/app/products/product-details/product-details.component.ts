@@ -4,6 +4,7 @@ import { Product } from '../../interfaces/product.interfaces';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../../services/products.service';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -18,6 +19,7 @@ export default class ProductDetailsComponent implements OnInit {
 
   private readonly routedActivated:ActivatedRoute = inject(ActivatedRoute);
   private readonly productService:ProductService = inject(ProductService);
+  private readonly cartService:CartService = inject(CartService);
 
   constructor(){}
 
@@ -30,10 +32,13 @@ export default class ProductDetailsComponent implements OnInit {
       if(params && params['id']){
         this.productService.getProductById(params['id']).subscribe((product) => {
           this.productDetails = product;
-          console.log(this.productDetails);
         })
       }
     })
+  }
+
+  addProduct():void{
+    this.cartService.addProductsToCart(this.productDetails);
   }
 
 }

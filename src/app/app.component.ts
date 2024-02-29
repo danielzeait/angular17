@@ -1,11 +1,7 @@
-import { Component, EnvironmentInjector, OnInit, inject, runInInjectionContext } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from './services/user.service';
 import HomeComponent from './dashboard/pages/home/home.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { SharedService } from './services/shared.service';
-import { Subscription } from 'rxjs';
 import { LoaderDialogComponent } from '@shared/loader-dialog/loader-dialog.component';
 import { LoaderService } from './services/loader.service';
 
@@ -15,21 +11,23 @@ import { LoaderService } from './services/loader.service';
   standalone: true,
   imports: [CommonModule, RouterOutlet, HomeComponent, LoaderDialogComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterContentChecked{
   title = 'my-dashboard-ng-17';
   loaderService: LoaderService = inject(LoaderService);
-  public showLoader: boolean = false;
-  constructor(){
-
-  }
+  changeDetector = inject(ChangeDetectorRef);
+  public showLoader:boolean = false;
   
   ngOnInit(): void {
     this.loaderService.displayLoader.subscribe((value) => {
       this.showLoader = value;
     })
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
 }

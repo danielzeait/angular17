@@ -18,6 +18,12 @@
                 </div>
             </a>
         }
-        <div class="notificationBagde">{{ newValue }}</div>
+        <div class="cart" (click)="showCart()">
+            <img src="../../../assets/img/shopping-cart.png">
+            @if(productsInCart.length > 0){
+                <div class="badge">{{ cartService.cartProducts().length }}</div>
+                <span class="text-sm text-white" (click)="clearCart()">Clear Cart</span>
+            }
+        </div>
     </div>
 </div>

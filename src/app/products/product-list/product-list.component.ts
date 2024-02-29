@@ -6,6 +6,7 @@ import { TitleComponent } from '@shared/title/title.component';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ModalDialogComponent } from '@shared/modal-dialog/modal-dialog.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +20,7 @@ export default class ProductListComponent implements OnInit {
   private readonly router:Router = inject(Router);
   private readonly activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   private productService:ProductService = inject(ProductService);
+  private cartService:CartService = inject(CartService);
   
   private destroySubscription$ = new Subject();
   
@@ -73,6 +75,10 @@ export default class ProductListComponent implements OnInit {
         queryParamsHandling: 'merge',
       }
     )
+  }
+
+  addProduct(product: Product){
+    this.cartService.addProductsToCart(product);
   }
 
   quickProductView(product: Product){

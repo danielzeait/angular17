@@ -35,3 +35,42 @@
     justify-content: center;
     margin-top: 10px;
 }
+
+.cart{
+    cursor: pointer;
+    position: relative;
+    align-items: center;
+    display: flex;
+    width: auto;
+    margin-top: 4vh;
+    padding-left: 10px;
+    justify-content: flex-start;
+    transition: transform 0.8s;
+    img{
+        max-width: 60px;
+        justify-self: center;
+    }
+    .badge{
+        position: absolute;
+        top: -5px;
+        left: 58px;
+        background: red;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    span{
+        position: absolute;
+        right: 40px;
+        bottom: 0;
+    }
+}
+
+.cart:hover{
+    transform: scale(1.03);
+}

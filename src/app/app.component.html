@@ -1,5 +1,3 @@
-@if(showLoader){
-    <app-loader-dialog></app-loader-dialog>
-}
+<app-loader-dialog *ngIf="showLoader"></app-loader-dialog>
 <router-outlet/>
 
