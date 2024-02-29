@@ -1,0 +1,37 @@
+#logo{
+    p{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        position: relative;
+        img{
+            width: 100%;
+            max-inline-size: 100%;
+            block-size: auto;
+            justify-self: center;
+        }
+        span{
+            margin: 0px 0px -7px 0px;
+            justify-self: end;
+        }
+    }
+}
+
+.logo-container{
+    display: grid;
+    img{
+        width: 60%;
+        justify-self: center;
+    }
+}
+
+.notificationBagde{
+    background-color: rgb(202, 18, 119) !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
